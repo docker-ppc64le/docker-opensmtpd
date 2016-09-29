@@ -1,2 +1,2 @@
-openssl genrsa -out etc/ssl/private/mail.oslab.fr.key 4096
-openssl req -new -x509 -key etc/ssl/private/mail.oslab.fr.key -out etc/ssl/certs/mail.oslab.fr.crt -days 730
+openssl genrsa -out etc/ssl/private/mail.marathon-slave-2.slash16.local.key 4096
+openssl req -new -x509 -key etc/ssl/private/mail.marathon-slave-2.slash16.local.key -out etc/ssl/certs/mail.marathon-slave-2.slash16.local.crt -days 730
