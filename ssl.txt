@@ -1,0 +1,2 @@
+openssl genrsa -out etc/ssl/private/mail.oslab.fr.key 4096
+openssl req -new -x509 -key etc/ssl/private/mail.oslab.fr.key -out etc/ssl/certs/mail.oslab.fr.crt -days 730
