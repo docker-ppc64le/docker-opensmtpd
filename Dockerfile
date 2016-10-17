@@ -11,6 +11,7 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/so
 	spamassassin \
 	dovecot-imapd \
 	dovecot-pop3d \
+	dovecot-ldap \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -28,9 +29,16 @@ ADD etc/smtpd.conf /etc/smtpd.conf
 
 # Dovecot
 ADD etc/dovecot/dovecot.conf /etc/dovecot/
+ADD etc/dovecot/dovecot-ldap.conf.ext /etc/dovecot/
+RUN groupadd -g 2000 vmail \
+ && useradd -m -u 2000 -g vmail -s /sbin/nologin -d /home/vmail vmail \
+ && chown dovecot:dovecot /home/vmail 
 
 # Spamassassin
 run sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/spamassassin
+
+# LDAP
+ADD etc/mail/ldap.conf /etc/mail/ldap.conf
 
 # forwards ports smtp and imap
 EXPOSE 25 587
